@@ -1,0 +1,26 @@
+foreground {{ base.white }}
+background {{ base.background }}
+
+selection_foreground {{ base.black }}
+selection_background {{ base.foreground }}
+
+color0 {{ base.background }}
+
+color0 {{ base.background }}
+color8 {{ base.background | darken(-0.2) }}
+
+{% for tn, tc in colors.items() %}
+color{{ loop.index + 8 }} {{ tc | darken(-0.2) }}
+color{{ loop.index }} {{ tc }}
+{% endfor %}
+
+color7 {{ base.foreground | darken(0.2) }}
+color15 {{ base.foreground }}
+
+cursor {{ colors.magenta | darken(-0.2) }}
+cursor_text_color {{ colors.magenta | darken(0.2) }}
+
+active_tab_foreground {{ base.white }}
+active_tab_background {{ colors.magenta | darken(0.2) }}
+inactive_tab_foreground {{ base.grey }}
+inactive_tab_background {{ base.background }}

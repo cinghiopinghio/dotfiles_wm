@@ -1,0 +1,37 @@
+schemes:
+    light: &light
+        primary:
+            foreground: '{{ base.black }}'
+            background: '{{ base.foreground }}'
+        normal:
+            white:      '{{ base.background | darken(-0.2) }}'
+            {% for tn, tc in colors.items() -%}
+            {{ '{:11s}'.format(tn + ':') }} '{{ tc }}'
+            {% endfor -%}
+            black:      '{{ base.foreground }}'
+        bright:
+            white:      '{{ base.background }}'
+            {% for tn, tc in colors.items() -%}
+            {{ '{:11s}'.format(tn + ':') }} '{{ tc | darken(0.2) }}'
+            {% endfor -%}
+            black:      '{{ base.foreground | darken(0.2) }}'
+
+    dark: &dark
+        primary:
+            foreground: '{{ base.white }}'
+            background: '{{ base.background }}'
+        normal:
+            white:      '{{ base.foreground | darken(0.2) }}'
+            {% for tn, tc in colors.items() -%}
+            {{ '{:11s}'.format(tn + ':') }} '{{ tc }}'
+            {% endfor -%}
+            black:      '{{ base.background }}'
+        bright:
+            white:      '{{ base.foreground }}'
+            {% for tn, tc in colors.items() -%}
+            {{ '{:11s}'.format(tn + ':') }} '{{ tc | darken(-0.2) }}'
+            {% endfor -%}
+            black:      '{{ base.background | darken(-0.2) }}'
+
+colors: *dark
+

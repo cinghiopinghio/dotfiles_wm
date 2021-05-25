@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# compile gtk themes with oomox
+for light in light dark
+do
+    # find real location of the configuration file
+    oomox_conf="${HOME}/.config/oomox/colors/oonko_${light}"
+    oomox_real_conf=$(readlink -f "${oomox_conf}")
+    oomox_name="oonko_${light}"
+
+    # if compiled is older: recompile
+    if [[ "${HOME}/.themes/${oomox_name}/gtk-3.0/gtk.css" -ot "${oomox_real_conf}" ]]
+    then
+        oomox-cli -o "${oomox_name}" "${oomox_conf}"
+    else
+        echo "${oomox_name} is already compiled"
+    fi
+done

@@ -1,0 +1,43 @@
+; Color name                GUI                  Base256    Base16
+;  Accents
+
+Color: grey        {{ base.grey }} ~ DarkGray
+Color: accent      {{ colors.magenta }} ~ Magenta
+Color: xdaccent      {{ colors.magenta | darken(0.1) }} ~ DarkMagenta
+Color: xlaccent      {{ colors.magenta | darken(-0.1) }} ~ Magenta
+
+{% for cname, color in colors.items() -%}
+Color: {{ "{:10s}".format(cname) }} {{ color }} ~ {{ cname | title }}
+{% endfor -%}
+{% for cname, color in more.items() -%}
+Color: {{ "{:10s}".format(cname) }} {{ color }} ~ Gray
+{% endfor %}
+
+{% for cname, color in colors.items() -%}
+Color: {{ "xd{:10s}".format(cname) }} {{ color | darken(0.1) }} ~ Dark{{ cname | title }}
+{% endfor -%}
+{% for cname, color in more.items() -%}
+Color: {{ "xd{:10s}".format(cname) }} {{ color | darken(0.1) }} ~ Gray
+{% endfor %}
+
+{% for cname, color in colors.items() -%}
+Color: {{ "xl{:10s}".format(cname) }} {{ color | darken(-0.1) }} ~ {{ cname | title }}
+{% endfor -%}
+{% for cname, color in more.items() -%}
+Color: {{ "xl{:10s}".format(cname) }} {{ color | darken(-0.1) }} ~ DarkGray
+{% endfor %}
+
+; Backgrounds
+{% for col in cycle(base.background, base.grey, 5) -%}
+Color: bkgrd_{{ loop.index0 }} {{ col }} ~ {% if loop.first %}Black{% else %}DarkGray{% endif %}
+{% endfor %}
+
+;  Foregrounds
+{% for col in cycle(base.foreground, base.grey, 5) -%}
+Color: frgrd_{{ loop.index0 }} {{ col }} ~ {% if loop.first %}White{% else %}Gray{% endif %}
+{% endfor %}
+
+Term Colors: bkgrd_0 red green yellow blue magenta cyan frgrd_0
+Term Colors: bkgrd_4 xlred xlgreen xlyellow xlblue xlmagenta xlcyan frgrd_4
+
+Include: _definitions.colortemplate
