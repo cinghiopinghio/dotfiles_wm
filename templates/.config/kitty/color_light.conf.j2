@@ -1,26 +1,17 @@
 foreground {{ base.black }}
-background {{ base.foreground }}
+background {{ base.light }}
 
 selection_foreground {{ base.white }}
-selection_background {{ base.background }}
+selection_background {{ base.dark }}
 
-color0 {{ base.foreground }}
+{% for xname, xcolor in xterm_light.items() %}
+color{{ xname }} {{ xcolor }}
+{%- endfor %}
 
-color0 {{ base.foreground }}
-color8 {{ base.foreground | darken(0.2) }}
-
-{% for tn, tc in colors.items() %}
-color{{ loop.index + 8 }} {{ tc | darken(0.2) }}
-color{{ loop.index }} {{ tc }}
-{% endfor %}
-
-color7 {{ base.background | darken(-0.2) }}
-color15 {{ base.background }}
-
-cursor {{ colors.magenta | darken(0.2) }}
-cursor_text_color {{ colors.magenta | darken(-0.2) }}
+cursor {{ base.primary.d.d }}
+cursor_text_color {{ base.primary.l.l }}
 
 active_tab_foreground {{ base.black }}
-active_tab_background {{ colors.magenta | darken(-0.2) }}
+active_tab_background {{ base.primary.l.l }}
 inactive_tab_foreground {{ base.grey }}
-inactive_tab_background {{ base.foreground }}
+inactive_tab_background {{ base.light }}

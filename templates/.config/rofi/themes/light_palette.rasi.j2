@@ -1,23 +1,23 @@
 * {
     grey:       {{ base.grey }};
-    {% for c in base.foreground|color_cycle(base.grey, 5) %}
+    {% for c in base.light|color_cycle(base.grey, 5) %}
     bkgrd{{ loop.index0 }}:     {{ c }};
     {%- endfor %}
-    {% for c in base.foreground|color_cycle(base.grey, 5) %}
+    {% for c in base.light|color_cycle(base.grey, 5) %}
     bkgrd{{ loop.index0 }}aa:   {{ c }}e0;
     {%- endfor %}
 
-    background: {{ base.foreground }};
+    background: {{ base.light }};
     foreground: {{ base.black }};
-    accent: {{ colors.magenta }};
-    xaccent: {{ colors.magenta | darken(+0.2) }};
+    accent: {{ base.primary }};
+    xaccent: {{ base.primary.d.d }};
 
     {% for c_name, c_val in colors.items() %}
     {{ "{:10s}".format(c_name) }}: {{ c_val }};
     {%- endfor %}
 
     {% for c_name, c_val in colors.items() %}
-    x{{ "{:9s}".format(c_name) }}: {{ c_val | darken(+0.2) }};
+    x{{ "{:9s}".format(c_name) }}: {{ c_val.d.d }};
     {%- endfor %}
 }
 // vim: ft=css

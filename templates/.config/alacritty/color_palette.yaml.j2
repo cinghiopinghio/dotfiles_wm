@@ -2,36 +2,36 @@ schemes:
     light: &light
         primary:
             foreground: '{{ base.black }}'
-            background: '{{ base.foreground }}'
+            background: '{{ base.light }}'
         normal:
-            white:      '{{ base.background | darken(-0.2) }}'
-            {% for tn, tc in colors.items() -%}
-            {{ '{:11s}'.format(tn + ':') }} '{{ tc }}'
+            black:      '{{ xterm_light['0'] }}'
+            {% for xname in xterm_names -%}
+            {{ '{:11s}'.format(xname + ':') }} '{{ colors[xname] }}'
             {% endfor -%}
-            black:      '{{ base.foreground }}'
+            white:      '{{ xterm_light['7'] }}'
         bright:
-            white:      '{{ base.background }}'
-            {% for tn, tc in colors.items() -%}
-            {{ '{:11s}'.format(tn + ':') }} '{{ tc | darken(0.2) }}'
+            black:      '{{ xterm_light['8'] }}'
+            {% for xname in xterm_names -%}
+            {{ '{:11s}'.format(xname + ':') }} '{{ colors[xname].d }}'
             {% endfor -%}
-            black:      '{{ base.foreground | darken(0.2) }}'
+            white:      '{{ xterm_light['15'] }}'
 
     dark: &dark
         primary:
             foreground: '{{ base.white }}'
-            background: '{{ base.background }}'
+            background: '{{ base.dark }}'
         normal:
-            white:      '{{ base.foreground | darken(0.2) }}'
-            {% for tn, tc in colors.items() -%}
-            {{ '{:11s}'.format(tn + ':') }} '{{ tc }}'
+            black:      '{{ xterm_dark['0'] }}'
+            {% for xname in xterm_names -%}
+            {{ '{:11s}'.format(xname + ':') }} '{{ colors[xname] }}'
             {% endfor -%}
-            black:      '{{ base.background }}'
+            white:      '{{ xterm_dark['7'] }}'
         bright:
-            white:      '{{ base.foreground }}'
-            {% for tn, tc in colors.items() -%}
-            {{ '{:11s}'.format(tn + ':') }} '{{ tc | darken(-0.2) }}'
+            black:      '{{ xterm_dark['8'] }}'
+            {% for xname in xterm_names -%}
+            {{ '{:11s}'.format(xname + ':') }} '{{ colors[xname].l }}'
             {% endfor -%}
-            black:      '{{ base.background | darken(-0.2) }}'
+            white:      '{{ xterm_dark['15'] }}'
 
 colors: *dark
 
